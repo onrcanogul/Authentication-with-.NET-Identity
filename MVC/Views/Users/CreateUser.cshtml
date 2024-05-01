@@ -1,0 +1,12 @@
+﻿@model CreateUserDto
+<form asp-controller="Users" asp-action="CreateUser" method="post" style="display :flex;flex-direction:column; justify-content:center; align-items:center: height:100vh">
+<label>Username</label>
+<input type="text" name="username" asp-for="Username" width="30%" />
+<label>Email</label>
+    <input type="email" name="email" asp-for="Email" width="30%" />
+<label>Password</label>
+    <input type="password" name="password" asp-for="Password" width="30%" />
+<button>Register</button>
+
+
+</form>

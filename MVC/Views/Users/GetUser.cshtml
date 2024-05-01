@@ -1,0 +1,33 @@
+﻿@model GetUserByIdDto
+
+<div style="border: 1px solid lightgray">
+    <div class="card">
+       <p>Username : @Model.Username</p>
+       <p>Email : @Model.Email</p>
+   </div>
+
+
+
+
+   <form method="post" asp-controller="Users" asp-action="AssignRole"> 
+   <div>
+       <input  type="hidden" asp-for="Id"/>
+       <ul>
+            @foreach(var role in @ViewBag.Roles)
+                {
+                    
+                    <input type="checkbox" 
+                    class="form-check-input"
+                    id="a" 
+                    value="@role.Name"
+                    name="selectedRoles"
+                    @(Model.Roles.Any(i => i == @role.Name) ? "checked" : "")/>
+                    <label for="a">@role.Name</label>              
+            }
+        </ul>
+
+        <button type="submit" class="btn btn-primary">Assign Roles</button>
+   </div>
+
+    </form>
+</div>

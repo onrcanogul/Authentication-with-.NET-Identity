@@ -1,0 +1,39 @@
+﻿@model GetAllUsersDto
+
+
+@if(@ViewData["deleteState"] != null){
+    <h1>asdasdasdasd</h1>
+}
+
+<a asp-action="CreateUser" class="btn btn-success">Create User</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col" style="width:10%">#</th>
+            <th scope="col " style="width: 18%">Name</th>
+            <th scope="col" style="width: 18%">Email</th>
+            <th scope="col" style="width: 18%">Roles</th>
+            <th scope="col " style="width: 18%">Set Role To User</th>
+            <th scope="col" style="width: 18%">Delete User</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+        }
+        @foreach(var user in Model.Users)
+        {
+            i = i + 1;
+            <tr>
+            <th  scope="row">@i</th>
+                <td style="width: 20%">@user.Username</td>
+                <td style="width: 20%">@user.Email</td>               
+                <td asp-users-roles="@user.Id">  </td>
+                <td style="width: 20%"><a class="btn-sm btn btn-primary" asp-controller="Users" asp-action="GetUser" asp-route-id="@user.Id">Set Role To User</a></td>
+                <td style="width: 20%"><form method="post"><button type="submit" class="btn-sm btn btn-danger" asp-controller="Users" asp-action="DeleteUser" asp-route-id="@user.Id">Delete User</button></form></td>
+        </tr>
+        }
+        <p>Total Users : @Model.TotalCount</p>
+    </tbody>
+</table>
